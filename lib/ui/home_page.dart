@@ -35,8 +35,6 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.food_bank), label: 'Restaurants'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite), label: 'Favorites'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: 'Settings'),
           ]),
       body: screens[currentIndexScreen],
     );
