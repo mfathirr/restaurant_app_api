@@ -4,6 +4,7 @@ import 'package:restaurant_app_api/provider/screen_provider.dart';
 import 'package:restaurant_app_api/ui/favorite_page.dart';
 import 'package:restaurant_app_api/ui/restaurant_detail_page.dart';
 import 'package:restaurant_app_api/ui/restaurant_list_page.dart';
+import 'package:restaurant_app_api/ui/setting_page.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home_page';
@@ -17,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   final List<dynamic> screens = [
     const RestaurantList(),
     const FavoritePage(),
+    const SettingPage()
   ];
 
   @override
@@ -35,6 +37,8 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.food_bank), label: 'Restaurants'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite), label: 'Favorites'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: 'Settings'),
           ]),
       body: screens[currentIndexScreen],
     );

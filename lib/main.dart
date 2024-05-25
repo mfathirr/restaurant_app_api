@@ -8,8 +8,15 @@ import 'package:restaurant_app_api/provider/restaurant_provider.dart';
 import 'package:restaurant_app_api/provider/screen_provider.dart';
 import 'package:restaurant_app_api/ui/home_page.dart';
 import 'package:restaurant_app_api/ui/restaurant_detail_page.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
-void main() {
+import 'common/notification.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService.init();
+  tz.initializeTimeZones();
+
   runApp(const MyApp());
 }
 
