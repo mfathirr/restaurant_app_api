@@ -1,4 +1,6 @@
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
@@ -9,14 +11,20 @@ import 'package:restaurant_app_api/provider/restaurant_provider.dart';
 import 'package:restaurant_app_api/provider/screen_provider.dart';
 import 'package:restaurant_app_api/ui/home_page.dart';
 import 'package:restaurant_app_api/ui/restaurant_detail_page.dart';
-import 'package:timezone/data/latest.dart' as tz;
 
+import 'common/background_service.dart';
 import 'common/notification.dart';
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await NotificationService.init();
-  tz.initializeTimeZones();
+  final NotificationService _notificationHelper = NotificationService();
+  final BackgroundService _service = BackgroundService();
+  _service.initializeIsolate();
+
+  await AndroidAlarmManager.initialize();
+  await _notificationHelper.init(flutterLocalNotificationsPlugin);
 
   runApp(const MyApp());
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant_app_api/common/notification.dart';
 import 'package:restaurant_app_api/provider/screen_provider.dart';
 import 'package:restaurant_app_api/ui/favorite_page.dart';
 import 'package:restaurant_app_api/ui/restaurant_detail_page.dart';
@@ -15,11 +16,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final NotificationService _notificationHelper = NotificationService();
   final List<dynamic> screens = [
     const RestaurantList(),
     const FavoritePage(),
     const SettingPage()
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _notificationHelper
+        .configureSelectNotificationSubject(DetailPage.routeName);
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

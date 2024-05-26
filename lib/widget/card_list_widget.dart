@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_app_api/data/model/restaurant.dart';
 import 'package:restaurant_app_api/ui/restaurant_detail_page.dart';
 
+import '../common/navigation.dart';
+
 Material cardRestaurant(
     RestaurantElement restaurant, BuildContext context, image) {
   return Material(
     child: GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, DetailPage.routeName,
-            arguments: restaurant.id);
+        Navigation.intenWithData(DetailPage.routeName, restaurant.id);
       },
       child: Card(
           margin: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),

@@ -42,7 +42,7 @@ class SettingPage extends StatelessWidget {
                     return Switch(
                       value: provider.isDailyNotifActive,
                       onChanged: (result) {
-                        value.switchNotification(result);
+                        value.scheduledNews(result);
                         provider.enableDailyNotif(result);
                       },
                     );
