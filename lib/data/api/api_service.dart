@@ -17,7 +17,7 @@ class ApiService {
 
   Future<Welcome> fetchData() async {
     const String url = "$_baseUrl$_listData";
-    final response = await http.get(Uri.parse(url));
+    final response = await client.get(Uri.parse(url));
     if (response.statusCode == 200) {
       return Welcome.fromJson(json.decode(response.body));
     } else {
