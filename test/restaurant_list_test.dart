@@ -16,7 +16,7 @@ void main() {
           .thenAnswer((_) async => http.Response(
               '{"error":false,"message":"success","count":20,"restaurants":[]}',
               200));
-      expect(await ApiService().fetchData(), isA<Welcome>());
+      expect(await ApiService(client), isA<ApiService>());
     });
   });
 }

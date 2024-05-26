@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app_api/provider/db_provider.dart';
 
+import 'restaurant_detail_page.dart';
+
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
 
@@ -32,12 +34,18 @@ class FavoritePage extends StatelessWidget {
                   Provider.of<DbProvider>(context, listen: false)
                       .deleteFavorite(state.favorite[index].id);
                 },
-                child: ListTile(
-                  title: Text(favorite.name),
-                  subtitle: Text(favorite.city),
-                  trailing: const Icon(
-                    Icons.favorite,
-                    color: Colors.red,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, DetailPage.routeName,
+                        arguments: state.favorite[index].id);
+                  },
+                  child: ListTile(
+                    title: Text(favorite.name),
+                    subtitle: Text(favorite.city),
+                    trailing: const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                    ),
                   ),
                 ),
               );

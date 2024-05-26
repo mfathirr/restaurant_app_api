@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app_api/common/navigation.dart';
 import 'package:restaurant_app_api/data/api/api_service.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ScreenindexProvider()),
         ChangeNotifierProvider(
           create: (_) => RestaurantProvider(
-            ApiService(),
+            ApiService(Client()),
           ),
         ),
         ChangeNotifierProvider(create: (context) => DbProvider())

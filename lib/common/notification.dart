@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart';
 import 'package:restaurant_app_api/data/api/api_service.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -26,26 +27,26 @@ class NotificationService {
     );
   }
 
-  Future simpleNotification() async {
-    var restaurant = await ApiService().fetchData();
-    var restaurantList = restaurant.restaurants;
-    var randomIndex = Random().nextInt((restaurantList.length));
-    var randomRestaurant = restaurantList[randomIndex];
+  // Future simpleNotification() async {
+  //   var restaurant = await ApiService().fetchData();
+  //   var restaurantList = restaurant.restaurants;
+  //   var randomIndex = Random().nextInt((restaurantList.length));
+  //   var randomRestaurant = restaurantList[randomIndex];
 
-    await flutterLocalNotificationsPlugin.show(
-        1,
-        "Testing",
-        randomRestaurant.name,
-        const NotificationDetails(
-            android: AndroidNotificationDetails('simple notif', 'channel notif',
-                channelDescription: ' channel description',
-                importance: Importance.max,
-                priority: Priority.high,
-                ticker: 'ticker')));
-  }
+  //   await flutterLocalNotificationsPlugin.show(
+  //       1,
+  //       "Testing",
+  //       randomRestaurant.name,
+  //       const NotificationDetails(
+  //           android: AndroidNotificationDetails('simple notif', 'channel notif',
+  //               channelDescription: ' channel description',
+  //               importance: Importance.max,
+  //               priority: Priority.high,
+  //               ticker: 'ticker')));
+  // }
 
   Future scheduledNotification() async {
-    var restaurant = await ApiService().fetchData();
+    var restaurant = await ApiService(Client()).fetchData();
     var restaurantList = restaurant.restaurants;
     var randomIndex = Random().nextInt((restaurantList.length));
     var randomRestaurant = restaurantList[randomIndex];
